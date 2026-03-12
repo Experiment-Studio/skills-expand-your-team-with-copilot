@@ -569,6 +569,15 @@ document.addEventListener("DOMContentLoaded", () => {
         `
         }
       </div>
+      <div class="share-section">
+        <span class="share-label">Share:</span>
+        <div class="share-buttons">
+          <button class="share-button share-twitter" data-activity="${name}" data-platform="twitter" title="Share on X (Twitter)">𝕏</button>
+          <button class="share-button share-facebook" data-activity="${name}" data-platform="facebook" title="Share on Facebook">f</button>
+          <button class="share-button share-whatsapp" data-activity="${name}" data-platform="whatsapp" title="Share on WhatsApp">💬</button>
+          <button class="share-button share-copy" data-activity="${name}" data-platform="copy" title="Copy link">🔗</button>
+        </div>
+      </div>
     `;
 
     // Add click handlers for delete buttons
@@ -587,7 +596,64 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
+    // Add click handlers for share buttons
+    activityCard.querySelectorAll(".share-button").forEach((button) => {
+      button.addEventListener("click", (event) => {
+        const activityName = event.currentTarget.dataset.activity;
+        const platform = event.currentTarget.dataset.platform;
+        shareActivity(platform, activityName, details, event.currentTarget);
+      });
+    });
+
     activitiesList.appendChild(activityCard);
+  }
+
+  // Build a shareable URL for an activity
+  function getActivityShareUrl(activityName) {
+    const url = new URL(window.location.href);
+    url.searchParams.set("activity", activityName);
+    return url.toString();
+  }
+
+  // Share an activity on a given platform
+  function shareActivity(platform, activityName, details, buttonElement) {
+    const shareUrl = getActivityShareUrl(activityName);
+    const shareText = `Check out "${activityName}" at Mergington High School! ${details.description}`;
+
+    if (platform === "twitter") {
+      window.open(
+        `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`,
+        "_blank",
+        "noopener,noreferrer"
+      );
+    } else if (platform === "facebook") {
+      window.open(
+        `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`,
+        "_blank",
+        "noopener,noreferrer"
+      );
+    } else if (platform === "whatsapp") {
+      window.open(
+        `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + " " + shareUrl)}`,
+        "_blank",
+        "noopener,noreferrer"
+      );
+    } else if (platform === "copy") {
+      navigator.clipboard.writeText(shareUrl).then(() => {
+        const originalTitle = buttonElement.title;
+        buttonElement.title = "Link copied!";
+        buttonElement.classList.add("share-copy-success");
+        setTimeout(() => {
+          buttonElement.title = originalTitle;
+          buttonElement.classList.remove("share-copy-success");
+        }, 2000);
+      }).catch(() => {
+        buttonElement.title = "Copy failed. Please copy the URL manually.";
+        setTimeout(() => {
+          buttonElement.title = "Copy link";
+        }, 3000);
+      });
+    }
   }
 
   // Event listeners for search and filter
