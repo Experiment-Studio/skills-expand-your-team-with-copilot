@@ -861,6 +861,37 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeRangeFilter,
   };
 
+  // Dark mode toggle
+  const darkModeToggle = document.getElementById("dark-mode-toggle");
+
+  if (darkModeToggle) {
+    function applyTheme(isDark) {
+      if (isDark) {
+        document.documentElement.setAttribute("data-theme", "dark");
+        darkModeToggle.textContent = "☀️";
+        darkModeToggle.setAttribute("aria-label", "Switch to light mode");
+        darkModeToggle.setAttribute("title", "Switch to light mode");
+        darkModeToggle.setAttribute("aria-pressed", "true");
+      } else {
+        document.documentElement.removeAttribute("data-theme");
+        darkModeToggle.textContent = "🌙";
+        darkModeToggle.setAttribute("aria-label", "Switch to dark mode");
+        darkModeToggle.setAttribute("title", "Switch to dark mode");
+        darkModeToggle.setAttribute("aria-pressed", "false");
+      }
+    }
+
+    // Load saved preference
+    const savedTheme = localStorage.getItem("theme");
+    applyTheme(savedTheme === "dark");
+
+    darkModeToggle.addEventListener("click", () => {
+      const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+      applyTheme(!isDark);
+      localStorage.setItem("theme", !isDark ? "dark" : "light");
+    });
+  }
+
   // Initialize app
   checkAuthentication();
   initializeFilters();
