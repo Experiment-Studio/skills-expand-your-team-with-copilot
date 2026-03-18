@@ -19,14 +19,20 @@ Let's set our teachers up for success by enrolling Copilot (in our school) to ha
 
 In previous exercises, we used Copilot **chat**, **edits** and **agent** mode. While those were super helpful, **Copilot coding agent** takes this to the next level by operating entirely on GitHub. No code editor required! 😎
 
-| Feature           | Copilot in the editor         | Copilot coding agent     |
-| ----------------- | ----------------------------- | ------------------------ |
-| **Interface**     | Your code editor              | Issues and Pull Requests |
-| **Work Scope**    | Local files                   | Repository               |
-| **Activation**    | Inline code suggestions, chat | Issue assignment         |
-| **Customization** | Custom instructions           | Custom instructions      |
-| **MCP Support**   | Yes                           | Yes                      |
-| **Vibe Coding**   | 😎                            | 😎                       |
+| Feature           | Copilot in the editor (Chat / Agent mode) | Copilot coding agent     |
+| ----------------- | ----------------------------------------- | ------------------------ |
+| **Interface**     | Your code editor                          | Issues and Pull Requests |
+| **Work Scope**    | Local files                               | Repository               |
+| **Activation**    | Inline suggestions, chat, or agent mode   | Issue assignment         |
+| **Customization** | Custom instructions                       | Custom instructions      |
+| **MCP Support**   | Yes                                       | Yes                      |
+| **Vibe Coding**   | 😎                                        | 😎                       |
+
+ > [!NOTE]
+> **Copilot Chat "Agent mode"** (in your editor) and **Copilot Coding Agent** (on GitHub) are two different features.
+> - **Chat mode**: Ask questions and get instant answers in your code editor.
+> - **Agent mode** (in editor): Copilot autonomously performs tasks within your local files, while you watch in real time.
+> - **Coding Agent** (on GitHub): Works autonomously on GitHub Issues and Pull Requests. It is triggered only by assigning it to an issue — not by regular comments or questions.
 
 #### How does it work?
 
