@@ -39,6 +39,12 @@ Copilot will only act on comments or pull request reviews when they include a `@
 
 This means you can also leave regular comments for your other, human team members and Copilot won't start unnecessary sessions!
 
+> [!NOTE]
+> **Copilot Coding Agent** is not the same as **GitHub Copilot Chat / Agent mode** in your editor:
+> - **Chat mode** (in editor): Ask questions and get instant answers in your code editor.
+> - **Agent mode** (in editor): Copilot autonomously performs tasks within your local files, while you watch in real time.
+> - **Copilot Coding Agent** (on GitHub): Works autonomously on GitHub. It only starts when you assign it to an issue or include `@copilot` in a pull request comment or review. Asking a regular question in an issue or PR comment will **not** trigger a new coding session.
+
 ```mermaid
 flowchart LR
     A[Leave PR Comment/Review] --> B{Contains @copilot?}
@@ -129,7 +135,7 @@ Now that Copilot has finished its working session, let's review its work and pro
 
    > 🪧 **Note:** This step is optional - if the coding agent session for the requested changes is already finished, don't worry - you can skip this step!
 
-   Using the bottom chat panel, right below the session logs - provide this new information that just came up!
+   Using the bottom chat panel in the **session logs page** (not GitHub Copilot Chat), right below the session logs - provide this new information that just came up!
 
    ```md
    There is a slight change of plans - we got a bigger classroom assignment for this class
